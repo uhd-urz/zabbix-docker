@@ -8,11 +8,12 @@ ENV \
 	ZJ_TIMEOUT=10 \
 	XXL_grapher=true
 
+COPY default-99-ssl.conf /data/conf/nginx/conf.d/
+COPY scripts/ /usr/local/share/zabbix/
 
 RUN touch $ZS_SNMPTrapperFile && \
-	yum install -y net-snmp-devel && gcc python-devel && \
+	yum install -y net-snmp-devel gcc python-devel python-pip && \
 	pip install easysnmp && \
 	chmod +x /usr/local/share/zabbix/alertscripts/growlmessage.py && \
-	chmod +x /usr/local/share/zabbix/externalscripts/polling_data.py
-
-COPY default-99-ssl.conf /data/conf/nginx/conf.d/
+	chmod +x /usr/local/share/zabbix/externalscripts/polling_data.py && \
+	yum remove -y net-snmp-devel gcc python-devel python-pip
