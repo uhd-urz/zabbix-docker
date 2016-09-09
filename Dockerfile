@@ -1,4 +1,4 @@
-FROM monitoringartist/zabbix-3.0-xxl:3.0.4
+FROM docker.io/monitoringartist/zabbix-3.0-xxl:3.0.4
 MAINTAINER Thomas Hochstrasser <thomas.hochstrasser@stud.uni-heidelberg.de>
 
 ENV \
